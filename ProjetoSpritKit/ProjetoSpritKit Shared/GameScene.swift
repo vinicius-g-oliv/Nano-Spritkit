@@ -11,6 +11,8 @@ class GameScene: SKScene {
     let fixedDelta: CFTimeInterval = 1.0 / 60.0 /* 60 FPS */
     let scrollSpeed: CGFloat = 500
     var ScrollLayer: SKNode!
+    var player: SKNode!
+    
     
     class func newGameScene() -> GameScene {
         // Load 'GameScene.sks' as an SKScene.
@@ -20,14 +22,20 @@ class GameScene: SKScene {
         }
         
         // Set the scale mode to scale to fit the window
-        scene.scaleMode = .aspectFill
-        
+        scene.scaleMode = .aspectFit
+      
         return scene
     }
     
     
     override func didMove(to view: SKView) {
         ScrollLayer = self.childNode(withName: "ScrollLayer")
+        // Define a imagem do ~Player~
+        player = SKSpriteNode(imageNamed: "CatV1icon2")
+        // Define a posição do ~Player~
+        player.position = CGPoint(x: 415, y: 200)
+        // Adiciona o node do ~Player~
+        self.addChild(player)
     }
     
     
@@ -36,6 +44,26 @@ class GameScene: SKScene {
         // Called before each frame is rendered
         scrollWorld()
     }
+    
+    override  func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+      
+        
+    }
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+       
+        for touch  in touches {
+            let location = touch.location(in: self)
+            
+            player.position.x = location.x
+            player.position.y = location.y
+            
+
+        }
+        
+        
+        
+    }
+    
     func scrollWorld() {
         /* Scroll World */
         ScrollLayer.position.y -= scrollSpeed * CGFloat(fixedDelta)
