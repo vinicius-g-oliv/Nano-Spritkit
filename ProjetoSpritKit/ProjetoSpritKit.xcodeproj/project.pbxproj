@@ -12,15 +12,15 @@
 		5588FA3C29145889009776BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5588FA3A29145889009776BE /* Main.storyboard */; };
 		5588FA3F29145889009776BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5588FA3D29145889009776BE /* LaunchScreen.storyboard */; };
 		5588FA4029145889009776BE /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5588FA2B29145887009776BE /* Actions.sks */; };
-		5588FA4129145889009776BE /* Menu.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5588FA2C29145887009776BE /* Menu.sks */; };
-		5588FA4229145889009776BE /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5588FA2D29145887009776BE /* Menu.swift */; };
+		5588FA4129145889009776BE /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5588FA2C29145887009776BE /* GameScene.sks */; };
+		5588FA4229145889009776BE /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5588FA2D29145887009776BE /* GameScene.swift */; };
 		5588FA4329145889009776BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5588FA2E29145889009776BE /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5588FA2B29145887009776BE /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
-		5588FA2C29145887009776BE /* Menu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Menu.sks; sourceTree = "<group>"; };
-		5588FA2D29145887009776BE /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		5588FA2C29145887009776BE /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		5588FA2D29145887009776BE /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		5588FA2E29145889009776BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5588FA3329145889009776BE /* ProjetoSpritKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjetoSpritKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5588FA3629145889009776BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -53,8 +53,8 @@
 			isa = PBXGroup;
 			children = (
 				5588FA2B29145887009776BE /* Actions.sks */,
-				5588FA2C29145887009776BE /* Menu.sks */,
-				5588FA2D29145887009776BE /* Menu.swift */,
+				5588FA2C29145887009776BE /* GameScene.sks */,
+				5588FA2D29145887009776BE /* GameScene.swift */,
 				5588FA2E29145889009776BE /* Assets.xcassets */,
 			);
 			path = "ProjetoSpritKit Shared";
@@ -137,7 +137,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5588FA4129145889009776BE /* Menu.sks in Resources */,
+				5588FA4129145889009776BE /* GameScene.sks in Resources */,
 				5588FA3C29145889009776BE /* Main.storyboard in Resources */,
 				5588FA4029145889009776BE /* Actions.sks in Resources */,
 				5588FA3F29145889009776BE /* LaunchScreen.storyboard in Resources */,
@@ -152,7 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5588FA4229145889009776BE /* Menu.swift in Sources */,
+				5588FA4229145889009776BE /* GameScene.swift in Sources */,
 				5588FA3929145889009776BE /* GameViewController.swift in Sources */,
 				5588FA3729145889009776BE /* AppDelegate.swift in Sources */,
 			);
