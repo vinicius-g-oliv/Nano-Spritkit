@@ -9,10 +9,7 @@ import SpriteKit
 
 class GameScene: SKScene {
     
-    
-    fileprivate var label : SKLabelNode?
-    fileprivate var spinnyNode : SKShapeNode?
-    
+    var playButtonNode: SKSpriteNode?
     
     class func newGameScene() -> GameScene {
         // Load 'GameScene.sks' as an SKScene.
@@ -30,6 +27,9 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         
+        
+        playButtonNode = (self.childNode(withName: "Play") as! SKSpriteNode)
+        
     }
     
     
@@ -38,8 +38,18 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
+        let touch = touches.first
+        
+        if let location = touch?.location(in:self) {
+            let nodesArray = self.nodes(at: location)
+            
+            if nodesArray.first?.name == "Play" {
+                let transition = SKTransition.flipHorizontal(withDuration: 0.5)
+                let newScene = NewScene(size: self.size)
+                self.view?.presentScene(newScene, transition: transition)
+                print("oi")
+            }
+            
         }
     }
 }
