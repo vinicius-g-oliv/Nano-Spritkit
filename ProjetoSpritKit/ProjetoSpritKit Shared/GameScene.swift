@@ -12,7 +12,7 @@ class GameScene: SKScene {
     let scrollSpeed: CGFloat = 500
     var ScrollLayer: SKNode!
     var player: SKNode!
-     var playButtonNode: SKSpriteNode?
+    
     
     class func newGameScene() -> GameScene {
         // Load 'GameScene.sks' as an SKScene.
@@ -36,14 +36,8 @@ class GameScene: SKScene {
         player.position = CGPoint(x: 415, y: 200)
         // Adiciona o node do ~Player~
         self.addChild(player)
-    
-    
-    
-        
-        
-        playButtonNode = (self.childNode(withName: "Play") as! SKSpriteNode)
-        
     }
+    
     
     
     override func update(_ currentTime: TimeInterval) {
@@ -51,7 +45,10 @@ class GameScene: SKScene {
         scrollWorld()
     }
     
-    
+    override  func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+      
+        
+    }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
        
         for touch  in touches {
@@ -89,20 +86,3 @@ class GameScene: SKScene {
     }
 }
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first
-        
-        if let location = touch?.location(in:self) {
-            let nodesArray = self.nodes(at: location)
-            
-            if nodesArray.first?.name == "Play" {
-                let transition = SKTransition.flipHorizontal(withDuration: 0.5)
-                let newScene = NewScene.init(fileNamed: "NewScene")!
-                newScene.scaleMode = SKSceneScaleMode.aspectFill
-                view?.presentScene(newScene)
-               
-            }
-            
-        }
-    }
-}
