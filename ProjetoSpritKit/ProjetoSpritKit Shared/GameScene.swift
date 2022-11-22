@@ -45,9 +45,10 @@ class GameScene: SKScene {
             
             if nodesArray.first?.name == "Play" {
                 let transition = SKTransition.flipHorizontal(withDuration: 0.5)
-                let newScene = NewScene(size: self.size)
-                self.view?.presentScene(newScene, transition: transition)
-                print("oi")
+                let newScene = NewScene.init(fileNamed: "NewScene")!
+                newScene.scaleMode = SKSceneScaleMode.aspectFill
+                view?.presentScene(newScene)
+               
             }
             
         }
