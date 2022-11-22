@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05AF5FF7292D4A3C00C5A394 /* NewScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 05AF5FF6292D4A3C00C5A394 /* NewScene.sks */; };
+		05AF5FF9292D4E8100C5A394 /* NewScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05AF5FF8292D4E8100C5A394 /* NewScene.swift */; };
 		5588FA3729145889009776BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5588FA3629145889009776BE /* AppDelegate.swift */; };
 		5588FA3929145889009776BE /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5588FA3829145889009776BE /* GameViewController.swift */; };
 		5588FA3C29145889009776BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5588FA3A29145889009776BE /* Main.storyboard */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05AF5FF6292D4A3C00C5A394 /* NewScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = NewScene.sks; sourceTree = "<group>"; };
+		05AF5FF8292D4E8100C5A394 /* NewScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewScene.swift; sourceTree = "<group>"; };
 		5588FA2B29145887009776BE /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		5588FA2C29145887009776BE /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		5588FA2D29145887009776BE /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -53,9 +57,11 @@
 			isa = PBXGroup;
 			children = (
 				5588FA2B29145887009776BE /* Actions.sks */,
+				05AF5FF8292D4E8100C5A394 /* NewScene.swift */,
 				5588FA2C29145887009776BE /* GameScene.sks */,
 				5588FA2D29145887009776BE /* GameScene.swift */,
 				5588FA2E29145889009776BE /* Assets.xcassets */,
+				05AF5FF6292D4A3C00C5A394 /* NewScene.sks */,
 			);
 			path = "ProjetoSpritKit Shared";
 			sourceTree = "<group>";
@@ -142,6 +148,7 @@
 				5588FA4029145889009776BE /* Actions.sks in Resources */,
 				5588FA3F29145889009776BE /* LaunchScreen.storyboard in Resources */,
 				5588FA4329145889009776BE /* Assets.xcassets in Resources */,
+				05AF5FF7292D4A3C00C5A394 /* NewScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5588FA4229145889009776BE /* GameScene.swift in Sources */,
+				05AF5FF9292D4E8100C5A394 /* NewScene.swift in Sources */,
 				5588FA3929145889009776BE /* GameViewController.swift in Sources */,
 				5588FA3729145889009776BE /* AppDelegate.swift in Sources */,
 			);
