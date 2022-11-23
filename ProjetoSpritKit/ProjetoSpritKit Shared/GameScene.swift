@@ -12,6 +12,7 @@ class GameScene: SKScene {
     let scrollSpeed: CGFloat = 500
     var ScrollLayer: SKNode!
     var player: SKNode!
+    var backgroundMusic: SKAudioNode!
     
     
     class func newGameScene() -> GameScene {
@@ -36,6 +37,7 @@ class GameScene: SKScene {
         player.position = CGPoint(x: 415, y: 200)
         // Adiciona o node do ~Player~
         self.addChild(player)
+      
     }
     
     

@@ -10,6 +10,7 @@ import SpriteKit
 class MenuScene: SKScene {
     
     var playButtonNode: SKSpriteNode?
+    var backgroundMusic: SKAudioNode!
     
     class func startScene() -> MenuScene {
         // Load 'GameScene.sks' as an SKScene.
@@ -26,6 +27,10 @@ class MenuScene: SKScene {
     override func didMove(to view: SKView) {
         
         playButtonNode = (self.childNode(withName: "playV1") as? SKSpriteNode)
+        //Adiciona som ao jogo
+        let effectSound = SKAction.playSoundFileNamed("Musica", waitForCompletion: false)
+        run(effectSound)
+        print("entroi")
            
        }
        
