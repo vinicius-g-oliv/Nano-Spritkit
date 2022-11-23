@@ -27,11 +27,19 @@ class MenuScene: SKScene {
     override func didMove(to view: SKView) {
         
         playButtonNode = (self.childNode(withName: "playV1") as? SKSpriteNode)
-        //Adiciona som ao jogo
+        //Adiciona musica ao jogo
         let effectSound = SKAction.playSoundFileNamed("Musica", waitForCompletion: false)
         run(effectSound)
-        print("entroi")
-           
+        //Adiciona som ao contato com o objeto
+//        let scoreSound = SKAction.playSoundFileNamed("score.mp3", waitForCompletion: false)
+//        extension GameScene: SKPhysicsContactDelegate {
+//            func didBegin(_ contact: SKPhysicsContact) {
+//                if contact.bodyA.node?.name == "Laser" || contact.bodyB.node?.name == "Laser"{
+//                    run(scoreSound)
+//                }
+//            }
+//        }
+//    https://medium.com/academy-ifce/primeiros-passos-com-spritekit-4710ee69a4c0
        }
        
        
