@@ -1,11 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "ground.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Spacecat3_V2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

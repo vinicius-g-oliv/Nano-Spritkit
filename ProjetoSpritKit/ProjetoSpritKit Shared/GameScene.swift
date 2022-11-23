@@ -15,7 +15,7 @@ class GameScene: SKScene {
     
     
     class func newGameScene() -> GameScene {
-        // Load 'GameScene.sks' as an SKScene.
+        //MARK: Load 'GameScene.sks' as an SKScene.
         guard let scene = SKScene(fileNamed: "GameScene") as? GameScene else {
             print("Failed to load GameScene.sks")
             abort()
@@ -30,8 +30,8 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         ScrollLayer = self.childNode(withName: "ScrollLayer")
-        // Define a imagem do ~Player~
-        player = SKSpriteNode(imageNamed: "CatV1icon2")
+        //MARK: Sprite player
+        player = SKSpriteNode(imageNamed: "GatoV2")
         // Define a posição do ~Player~
         player.position = CGPoint(x: 415, y: 200)
         // Adiciona o node do ~Player~
@@ -50,13 +50,12 @@ class GameScene: SKScene {
         
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-       
+       //MARK: Movimenta pela tela
         for touch  in touches {
             let location = touch.location(in: self)
             
             player.position.x = location.x
-            player.position.y = location.y
-            
+            player.position.y = 200
 
         }
         
@@ -65,7 +64,7 @@ class GameScene: SKScene {
     }
     
     func scrollWorld() {
-        /* Scroll World */
+        //MARK: Movimento do background
         ScrollLayer.position.y -= scrollSpeed * CGFloat(fixedDelta)
         for ground in ScrollLayer.children as! [SKSpriteNode] {
             
