@@ -7,14 +7,94 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     let fixedDelta: CFTimeInterval = 1.0 / 60.0 /* 60 FPS */
     let scrollSpeed: CGFloat = 500
     var ScrollLayer: SKNode!
     var player: SKNode!
     
     
+    var gameTimer: Timer?
+    
+    let ship = SKSpriteNode()
+    
+    @objc func createMeteoro(){
+        let randomPos = Int.random(in: 0..<8)
+        let x_values = [-100,0,150,300,450,600,800,1000]
+        let x_values1 = [100,200,300,400,500,600,700,800]
+        let fotinhos = ["MeteoroV1_1", "MeteoroV1_2", "MeteoroV1_3", "MeteoroV1_4", "MeteoroV1_5", "MeteoroV1_6", "MeteoroV1_7", "MeteoroV1_8"]
+        
+        
+        let meteoro = SKSpriteNode(imageNamed: fotinhos[randomPos])
+        
+        
+        meteoro.size = CGSize(width: 150, height: 150)
+        meteoro.position = CGPoint(x: x_values[randomPos], y: 2000)
+        
+        
+        meteoro.physicsBody = SKPhysicsBody(rectangleOf: meteoro.frame.size)
+        meteoro.physicsBody!.isDynamic = true
+        meteoro.physicsBody!.affectedByGravity = false
+        meteoro.physicsBody!.categoryBitMask = 1
+        meteoro.physicsBody!.usesPreciseCollisionDetection = true
+        
+        self.addChild(meteoro)
+        
+        let moveUp = SKAction.move(to: CGPoint(x: x_values1[randomPos], y: -200), duration: 2)
+        meteoro.run(moveUp)
+       
+       
+
+        
+        
+    }
+    
+   
+    @objc func deleteMeteor(){
+        
+    }
+//    @objc func createEnemyMeteor() {
+//        let randomPos = Int.random(in: 0..<12)
+//
+//        let x_values = [-300, -250, -200, -150, -100, -50, 0, 50, 100, 150, 200, 250, 300 ]
+//
+//
+//
+//
+//        let meteorPos = CGPoint(x: x_values[randomPos], y: y_values)
+//
+//        let meteoro = SKSpriteNode(imageNamed: "MeteoroV1_1")
+//        meteoro.size = CGSize(width: 25, height: 25)
+//       // meteoro.position = ship.position
+//
+//
+//        meteoro.physicsBody = SKPhysicsBody(rectangleOf: meteoro.frame.size)
+//        meteoro.physicsBody!.isDynamic = true
+//        meteoro.physicsBody!.affectedByGravity = false
+//        meteoro.physicsBody!.categoryBitMask = 1
+//        meteoro.physicsBody!.usesPreciseCollisionDetection = true
+//
+//        self.addChild(meteoro)
+//
+//        let moveUp = SKAction.move(to: CGPoint(x: 100, y: 700), duration: 2)
+//        meteoro.run(moveUp)
+//
+//
+//
+//
+//
+//    }
+    
+    
+    override func sceneDidLoad() {
+        super.sceneDidLoad()
+        
+        self.physicsWorld.contactDelegate = self
+        
+       
+    }
     class func newGameScene() -> GameScene {
+        
         //MARK: Load 'GameScene.sks' as an SKScene.
         guard let scene = SKScene(fileNamed: "GameScene") as? GameScene else {
             print("Failed to load GameScene.sks")
@@ -29,13 +109,68 @@ class GameScene: SKScene {
     
     
     override func didMove(to view: SKView) {
+        
+        gameTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(createMeteoro), userInfo: nil, repeats: true)
+        self.physicsWorld.contactDelegate = self
+        
+        createMeteoro()
+        
         ScrollLayer = self.childNode(withName: "ScrollLayer")
         //MARK: Sprite player
         player = SKSpriteNode(imageNamed: "GatoV2")
         // Define a posição do ~Player~
         player.position = CGPoint(x: 415, y: 200)
+        let body = SKPhysicsBody(rectangleOf: player.frame.size)
+        body.affectedByGravity = true
+        player?.physicsBody = body
+        body.contactTestBitMask = 1
+        
+        // let body = SKPhysicsBody(rectangleOf: player?.size ?? .zero)
+        //  player?.physicsBody = body
         // Adiciona o node do ~Player~
         self.addChild(player)
+//        do{
+//            let ground = SKSpriteNode(color: .brown, size: .init(width: 500, height: 1000))
+//            ground.position.y -= 300
+//
+//            let body = SKPhysicsBody(rectangleOf: ground.size)
+//            body.affectedByGravity = true
+//            body.allowsRotation = false
+//            body.isDynamic = false
+//
+//            body.contactTestBitMask = 1
+//
+//            ground.physicsBody = body
+//
+//            self.addChild(ground)
+//        }
+//        do{
+//            let player1 = SKSpriteNode(imageNamed: "bunny1")
+////            player1.position.y -= 300
+//
+//            let body = SKPhysicsBody(rectangleOf: player1.size ?? .zero)
+//            body.affectedByGravity = true
+//            body.allowsRotation = false
+//            body.isDynamic = false
+//
+//            body.contactTestBitMask = 1
+//
+//            player1.physicsBody = body
+//
+//            self.addChild(player1)
+//        }
+        
+    }
+    
+    
+    
+    func didBegin(_ contact: SKPhysicsContact){
+        print("encostou ")
+        let transition = SKTransition.flipHorizontal(withDuration: 0.3)
+        let newScene = MenuScene.init(fileNamed: "MenuScene")!
+        newScene.scaleMode = SKSceneScaleMode.aspectFill
+        view?.presentScene(newScene)
+        
     }
     
     
@@ -55,12 +190,9 @@ class GameScene: SKScene {
             let location = touch.location(in: self)
             
             player.position.x = location.x
-            player.position.y = 200
+            player.position.y = location.y
 
         }
-        
-        
-        
     }
     
     func scrollWorld() {
@@ -81,7 +213,6 @@ class GameScene: SKScene {
                 ground.position = self.convert(newPosition, to: ScrollLayer)
             }
         }
-        
     }
 }
 
