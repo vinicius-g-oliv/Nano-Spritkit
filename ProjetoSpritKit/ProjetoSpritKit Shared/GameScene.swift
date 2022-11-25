@@ -12,6 +12,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let scrollSpeed: CGFloat = 500
     var ScrollLayer: SKNode!
     var player: SKNode!
+    var backgroundMusic: SKAudioNode!
     
     
     var gameTimer: Timer?
@@ -171,6 +172,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         newScene.scaleMode = SKSceneScaleMode.aspectFill
         view?.presentScene(newScene)
         
+      
     }
     
     
