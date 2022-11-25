@@ -18,6 +18,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let ship = SKSpriteNode()
     
+    
+    // MARK: cria os meteoros
+    // de forma aleatoria ja sorteando as imagens e posicoes
     @objc func createMeteoro(){
         let randomPos = Int.random(in: 0..<8)
         let x_values = [-100,0,150,300,450,600,800,1000]
@@ -39,7 +42,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         meteoro.physicsBody!.usesPreciseCollisionDetection = true
         
         self.addChild(meteoro)
-        
+        //duration = tempo que o meteoro demora para percorrer a tela
         let moveUp = SKAction.move(to: CGPoint(x: x_values1[randomPos], y: -200), duration: 2)
         meteoro.run(moveUp)
        
@@ -53,37 +56,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     @objc func deleteMeteor(){
         
     }
-//    @objc func createEnemyMeteor() {
-//        let randomPos = Int.random(in: 0..<12)
-//
-//        let x_values = [-300, -250, -200, -150, -100, -50, 0, 50, 100, 150, 200, 250, 300 ]
-//
-//
-//
-//
-//        let meteorPos = CGPoint(x: x_values[randomPos], y: y_values)
-//
-//        let meteoro = SKSpriteNode(imageNamed: "MeteoroV1_1")
-//        meteoro.size = CGSize(width: 25, height: 25)
-//       // meteoro.position = ship.position
-//
-//
-//        meteoro.physicsBody = SKPhysicsBody(rectangleOf: meteoro.frame.size)
-//        meteoro.physicsBody!.isDynamic = true
-//        meteoro.physicsBody!.affectedByGravity = false
-//        meteoro.physicsBody!.categoryBitMask = 1
-//        meteoro.physicsBody!.usesPreciseCollisionDetection = true
-//
-//        self.addChild(meteoro)
-//
-//        let moveUp = SKAction.move(to: CGPoint(x: 100, y: 700), duration: 2)
-//        meteoro.run(moveUp)
-//
-//
-//
-//
-//
-//    }
+
     
     
     override func sceneDidLoad() {
@@ -129,36 +102,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //  player?.physicsBody = body
         // Adiciona o node do ~Player~
         self.addChild(player)
-//        do{
-//            let ground = SKSpriteNode(color: .brown, size: .init(width: 500, height: 1000))
-//            ground.position.y -= 300
-//
-//            let body = SKPhysicsBody(rectangleOf: ground.size)
-//            body.affectedByGravity = true
-//            body.allowsRotation = false
-//            body.isDynamic = false
-//
-//            body.contactTestBitMask = 1
-//
-//            ground.physicsBody = body
-//
-//            self.addChild(ground)
-//        }
-//        do{
-//            let player1 = SKSpriteNode(imageNamed: "bunny1")
-////            player1.position.y -= 300
-//
-//            let body = SKPhysicsBody(rectangleOf: player1.size ?? .zero)
-//            body.affectedByGravity = true
-//            body.allowsRotation = false
-//            body.isDynamic = false
-//
-//            body.contactTestBitMask = 1
-//
-//            player1.physicsBody = body
-//
-//            self.addChild(player1)
-//        }
+
         
     }
     
