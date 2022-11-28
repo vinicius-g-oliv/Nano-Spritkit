@@ -10,8 +10,8 @@ import SpriteKit
 class MenuScene: SKScene {
     
     var playButtonNode: SKSpriteNode?
-
-    let effectSound = SKAudioNode(fileNamed: "Musica")
+    var backgroundMusic: SKAudioNode!
+    let effectSound: SKAction = SKAction.playSoundFileNamed("Musica", waitForCompletion: true)
     
     class func startScene() -> MenuScene {
         // Load 'GameScene.sks' as an SKScene.
@@ -29,8 +29,8 @@ class MenuScene: SKScene {
         
         playButtonNode = (self.childNode(withName: "playV1") as? SKSpriteNode)
         //Adiciona musica ao jogo
+//        let effectSound =   run(effectSound)
         
-        addChild(effectSound)
         //Adiciona som ao contato com o objeto
 //        let scoreSound = SKAction.playSoundFileNamed("score.mp3", waitForCompletion: false)
 //        extension GameScene: SKPhysicsContactDelegate {
@@ -55,11 +55,12 @@ class MenuScene: SKScene {
                let nodesArray = self.nodes(at: location)
                
                if nodesArray.first?.name == "playV1" {
-                   let transition = SKTransition.crossFade(withDuration: 0.5)
+                   _ = SKTransition.crossFade(withDuration: 0.5)
                    let newScene = GameScene.init(fileNamed: "GameScene")!
-                   
                    newScene.scaleMode = SKSceneScaleMode.aspectFill
-                   view?.presentScene(newScene, transition: transition)
+                   view?.presentScene(newScene)
+                
+                 
                   
                }
                

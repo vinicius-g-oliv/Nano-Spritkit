@@ -11,7 +11,6 @@
 		05E47039292FD8B800EB4C5E /* PauseScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E47038292FD8B800EB4C5E /* PauseScene.swift */; };
 		05E4703B292FEBEE00EB4C5E /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E4703A292FEBEE00EB4C5E /* GameOverScene.swift */; };
 		05E4703D292FEC4E00EB4C5E /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 05E4703C292FEC4E00EB4C5E /* GameOverScene.sks */; };
-		05F13FA3292EB87E000E304C /* Musica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 05F13FA2292EB87E000E304C /* Musica.mp3 */; };
 		552A2059292D90A5001C58D6 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552A2058292D90A5001C58D6 /* MenuScene.swift */; };
 		552A205B292D91AB001C58D6 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 552A205A292D91AB001C58D6 /* MenuScene.sks */; };
 		5588FA3729145889009776BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5588FA3629145889009776BE /* AppDelegate.swift */; };
@@ -22,6 +21,8 @@
 		5588FA4129145889009776BE /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 5588FA2C29145887009776BE /* GameScene.sks */; };
 		5588FA4229145889009776BE /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5588FA2D29145887009776BE /* GameScene.swift */; };
 		5588FA4329145889009776BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5588FA2E29145889009776BE /* Assets.xcassets */; };
+		558C449829354FFA00F09315 /* catAnime.sks in Resources */ = {isa = PBXBuildFile; fileRef = 558C449729354FFA00F09315 /* catAnime.sks */; };
+		55C1A2EF293157A4002F84E8 /* Musica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 55C1A2EE293157A4002F84E8 /* Musica.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +30,6 @@
 		05E47038292FD8B800EB4C5E /* PauseScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseScene.swift; sourceTree = "<group>"; };
 		05E4703A292FEBEE00EB4C5E /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		05E4703C292FEC4E00EB4C5E /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
-		05F13FA2292EB87E000E304C /* Musica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Musica.mp3; path = ../../../../../Downloads/Musica.mp3; sourceTree = "<group>"; };
 		552A2058292D90A5001C58D6 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		552A205A292D91AB001C58D6 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
 		5588FA2B29145887009776BE /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -41,6 +41,8 @@
 		5588FA3829145889009776BE /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		5588FA3B29145889009776BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5588FA3E29145889009776BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		558C449729354FFA00F09315 /* catAnime.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = catAnime.sks; sourceTree = "<group>"; };
+		55C1A2EE293157A4002F84E8 /* Musica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Musica.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,12 +68,13 @@
 		5588FA2A29145887009776BE /* ProjetoSpritKit Shared */ = {
 			isa = PBXGroup;
 			children = (
-				05F13FA2292EB87E000E304C /* Musica.mp3 */,
+				55C1A2EE293157A4002F84E8 /* Musica.mp3 */,
 				05E4703C292FEC4E00EB4C5E /* GameOverScene.sks */,
 				05E4703A292FEBEE00EB4C5E /* GameOverScene.swift */,
 				05E47036292FD8AB00EB4C5E /* PauseScene.sks */,
 				05E47038292FD8B800EB4C5E /* PauseScene.swift */,
 				5588FA2C29145887009776BE /* GameScene.sks */,
+				558C449729354FFA00F09315 /* catAnime.sks */,
 				5588FA2D29145887009776BE /* GameScene.swift */,
 				552A205A292D91AB001C58D6 /* MenuScene.sks */,
 				552A2058292D90A5001C58D6 /* MenuScene.swift */,
@@ -163,10 +166,11 @@
 				552A205B292D91AB001C58D6 /* MenuScene.sks in Resources */,
 				5588FA3C29145889009776BE /* Main.storyboard in Resources */,
 				5588FA4029145889009776BE /* Actions.sks in Resources */,
+				55C1A2EF293157A4002F84E8 /* Musica.mp3 in Resources */,
 				5588FA3F29145889009776BE /* LaunchScreen.storyboard in Resources */,
 				5588FA4329145889009776BE /* Assets.xcassets in Resources */,
 				05E4703D292FEC4E00EB4C5E /* GameOverScene.sks in Resources */,
-				05F13FA3292EB87E000E304C /* Musica.mp3 in Resources */,
+				558C449829354FFA00F09315 /* catAnime.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,7 +330,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = TNPTQGXSA4;
+				DEVELOPMENT_TEAM = NFLV2P6B4S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -334,7 +338,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -359,7 +363,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = TNPTQGXSA4;
+				DEVELOPMENT_TEAM = NFLV2P6B4S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -367,7 +371,7 @@
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

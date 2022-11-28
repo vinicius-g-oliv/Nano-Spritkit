@@ -14,21 +14,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var player: SKSpriteNode!
     var backgroundMusic: SKAudioNode!
     var gameTimer: Timer?
-    var deletar: SKSpriteNode!
-
+    let ship = SKSpriteNode()
     
     @objc func createMeteoro(){
-        let randomPos = Int.random(in: 0..<10)
-        let x_values = [-100,0,150,250,300,450,600,800,850,1000]
-        let x_values1 = [100,200,300,400,500,600,700,800,850,1000]
-        let fotinhos = ["MeteoroV1_1", "MeteoroV1_2", "MeteoroV1_3", "MeteoroV1_4", "MeteoroV1_5", "MeteoroV1_6", "MeteoroV1_7", "MeteoroV1_8","MeteoroV1_7", "MeteoroV1_8"]
+        let randomPos = Int.random(in: 0..<8)
+        let x_values = [-100,0,150,300,450,600,800,1000]
+        let x_values1 = [100,200,300,400,500,600,700,800]
+        let fotinhos = ["MeteoroV1_1", "MeteoroV1_2", "MeteoroV1_3", "MeteoroV1_4", "MeteoroV1_5", "MeteoroV1_6", "MeteoroV1_7", "MeteoroV1_8"]
         
         
         let meteoro = SKSpriteNode(imageNamed: fotinhos[randomPos])
         
         
-        meteoro.size = CGSize(width: 85, height: 85)
+        meteoro.size = CGSize(width: 150, height: 150)
         meteoro.position = CGPoint(x: x_values[randomPos], y: 2000)
+        
+        
         meteoro.physicsBody = SKPhysicsBody(rectangleOf: meteoro.frame.size)
         meteoro.physicsBody!.isDynamic = true
         meteoro.physicsBody!.affectedByGravity = false
@@ -38,35 +39,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(meteoro)
         
         let moveUp = SKAction.move(to: CGPoint(x: x_values1[randomPos], y: -200), duration: 2)
-        
         meteoro.run(moveUp)
         
-
-        let remove = SKAction.wait(forDuration: 1)
-        
-        let sequence = SKAction.sequence([moveUp,
-            remove,
-            .run {
-                meteoro.removeFromParent()
-            }
-        ])
-        meteoro.run(sequence)
-       
     
         
+       
+        
     }
-  
+    
+    
+    @objc func deleteMeteor(){
+      
+    }
+    
     
     
     override func sceneDidLoad() {
         super.sceneDidLoad()
-        
         self.physicsWorld.contactDelegate = self
         
-       
+        
     }
-    
-    
     class func newGameScene() -> GameScene {
         
         //MARK: Load 'GameScene.sks' as an SKScene.
@@ -77,7 +70,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Set the scale mode to scale to fit the window
         scene.scaleMode = .aspectFit
-      
+        
         return scene
     }
     
@@ -90,47 +83,51 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createMeteoro()
         
         ScrollLayer = self.childNode(withName: "ScrollLayer")
-        createPlayer()
-    
-
+        //MARK: Sprite player
+        player = (self.childNode(withName: "Gatinho") as! SKSpriteNode)
+        // Define a posição do ~Player~
+        player.position = CGPoint(x: 415, y: 200)
+        let body = SKPhysicsBody(rectangleOf: player.frame.size)
+        body.affectedByGravity = true
+        player?.physicsBody = body
+        body.contactTestBitMask = 1
+        //        self.addChild(player)
+        
         
     }
     
     
     
     func didBegin(_ contact: SKPhysicsContact){
-       
-   
+        gameOver()
         
-                let transition = SKTransition.crossFade(withDuration: 0.3)
+        
+    }
+    //MARK: chama tela de fim de jogo
+    func gameOver () {
+        _ = SKTransition.flipHorizontal(withDuration: 0.3)
         let newScene = GameOverScene.init(fileNamed: "GameOverScene")!
         newScene.scaleMode = SKSceneScaleMode.aspectFill
-        view?.presentScene(newScene, transition: transition)
-        
-//      
+        view?.presentScene(newScene)
     }
-    
-    
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         scrollWorld()
-        
-        
     }
     
     override  func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-      
+        
         
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-       //MARK: Movimenta pela tela
+        //MARK: Movimenta pela tela
         for touch  in touches {
             let location = touch.location(in: self)
             
             player.position.x = location.x
             player.position.y = 200
-
+            
         }
     }
     
@@ -153,16 +150,5 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
-    func createPlayer() {
-        //MARK: Sprite player
-        player = self.childNode(withName: "catNode") as? SKSpriteNode
-        // Define a posição do ~Player~
-        player.position = CGPoint(x: 415, y: 200)
-        let body = SKPhysicsBody(rectangleOf: player.frame.size)
-        player?.physicsBody = body
-        body.contactTestBitMask = 1
-        
-    }
-
 }
 
