@@ -22,7 +22,8 @@
 		5588FA4229145889009776BE /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5588FA2D29145887009776BE /* GameScene.swift */; };
 		5588FA4329145889009776BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5588FA2E29145889009776BE /* Assets.xcassets */; };
 		558C449829354FFA00F09315 /* catAnime.sks in Resources */ = {isa = PBXBuildFile; fileRef = 558C449729354FFA00F09315 /* catAnime.sks */; };
-		55C1A2EF293157A4002F84E8 /* Musica.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 55C1A2EE293157A4002F84E8 /* Musica.mp3 */; };
+		81C14C452937D00A00DEA254 /* Dados.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C14C442937D00A00DEA254 /* Dados.swift */; };
+		81C14C472937F17700DEA254 /* Space Jazz.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 81C14C462937F17700DEA254 /* Space Jazz.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +43,8 @@
 		5588FA3B29145889009776BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5588FA3E29145889009776BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		558C449729354FFA00F09315 /* catAnime.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = catAnime.sks; sourceTree = "<group>"; };
-		55C1A2EE293157A4002F84E8 /* Musica.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Musica.mp3; sourceTree = "<group>"; };
+		81C14C442937D00A00DEA254 /* Dados.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dados.swift; sourceTree = "<group>"; };
+		81C14C462937F17700DEA254 /* Space Jazz.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Space Jazz.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,14 +70,15 @@
 		5588FA2A29145887009776BE /* ProjetoSpritKit Shared */ = {
 			isa = PBXGroup;
 			children = (
-				55C1A2EE293157A4002F84E8 /* Musica.mp3 */,
+				81C14C462937F17700DEA254 /* Space Jazz.mp3 */,
 				05E4703C292FEC4E00EB4C5E /* GameOverScene.sks */,
 				05E4703A292FEBEE00EB4C5E /* GameOverScene.swift */,
 				05E47036292FD8AB00EB4C5E /* PauseScene.sks */,
 				05E47038292FD8B800EB4C5E /* PauseScene.swift */,
 				5588FA2C29145887009776BE /* GameScene.sks */,
-				558C449729354FFA00F09315 /* catAnime.sks */,
 				5588FA2D29145887009776BE /* GameScene.swift */,
+				558C449729354FFA00F09315 /* catAnime.sks */,
+				81C14C442937D00A00DEA254 /* Dados.swift */,
 				552A205A292D91AB001C58D6 /* MenuScene.sks */,
 				552A2058292D90A5001C58D6 /* MenuScene.swift */,
 				5588FA2B29145887009776BE /* Actions.sks */,
@@ -163,10 +166,10 @@
 			files = (
 				5588FA4129145889009776BE /* GameScene.sks in Resources */,
 				05E47037292FD8AB00EB4C5E /* PauseScene.sks in Resources */,
+				81C14C472937F17700DEA254 /* Space Jazz.mp3 in Resources */,
 				552A205B292D91AB001C58D6 /* MenuScene.sks in Resources */,
 				5588FA3C29145889009776BE /* Main.storyboard in Resources */,
 				5588FA4029145889009776BE /* Actions.sks in Resources */,
-				55C1A2EF293157A4002F84E8 /* Musica.mp3 in Resources */,
 				5588FA3F29145889009776BE /* LaunchScreen.storyboard in Resources */,
 				5588FA4329145889009776BE /* Assets.xcassets in Resources */,
 				05E4703D292FEC4E00EB4C5E /* GameOverScene.sks in Resources */,
@@ -181,6 +184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81C14C452937D00A00DEA254 /* Dados.swift in Sources */,
 				05E47039292FD8B800EB4C5E /* PauseScene.swift in Sources */,
 				5588FA4229145889009776BE /* GameScene.swift in Sources */,
 				552A2059292D90A5001C58D6 /* MenuScene.swift in Sources */,

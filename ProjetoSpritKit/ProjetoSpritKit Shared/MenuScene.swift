@@ -11,7 +11,7 @@ class MenuScene: SKScene {
     
     var playButtonNode: SKSpriteNode?
 
-    let effectSound = SKAudioNode(fileNamed: "Musica")
+    let effectSound = SKAudioNode(fileNamed: "Space Jazz")
     
     class func startScene() -> MenuScene {
         // Load 'GameScene.sks' as an SKScene.
@@ -29,17 +29,9 @@ class MenuScene: SKScene {
         
         playButtonNode = (self.childNode(withName: "playV1") as? SKSpriteNode)
         //Adiciona musica ao jogo
-        
         addChild(effectSound)
-        //Adiciona som ao contato com o objeto
-//        let scoreSound = SKAction.playSoundFileNamed("score.mp3", waitForCompletion: false)
-//        extension GameScene: SKPhysicsContactDelegate {
-//            func didBegin(_ contact: SKPhysicsContact) {
-//                if contact.bodyA.node?.name == "Laser" || contact.bodyB.node?.name == "Laser"{
-//                    run(scoreSound)
-//                }
-//            }
-//        }
+//        var effectSound = SKAction.playSoundFileNamed("Space Jazz", waitForCompletion: false)
+//        run(effectSoun)
 //    https://medium.com/academy-ifce/primeiros-passos-com-spritekit-4710ee69a4c0
        }
        
@@ -57,7 +49,8 @@ class MenuScene: SKScene {
                if nodesArray.first?.name == "playV1" {
                    let transition = SKTransition.crossFade(withDuration: 0.5)
                    let newScene = GameScene.init(fileNamed: "GameScene")!
-                   
+//                   var effectSound = SKAction.playSoundFileNamed("Space Jazz", waitForCompletion: false)
+//                   run(effectSound)
                    newScene.scaleMode = SKSceneScaleMode.aspectFill
                    view?.presentScene(newScene, transition: transition)
                   

@@ -6,16 +6,32 @@
 //
 
 import SpriteKit
+import GameplayKit
+let kMinDistance = 25
+let kMinDuration = 0.1
+let kMinSpeed = 100
+let kMaxSpeed = 7000
+let initialSpeedUpFrequency : Double = 15
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     let fixedDelta: CFTimeInterval = 1.0 / 60.0 /* 60 FPS */
     let scrollSpeed: CGFloat = 500
     var ScrollLayer: SKNode!
     var player: SKSpriteNode!
-    var backgroundMusic: SKAudioNode!
     var gameTimer: Timer?
-    var deletar: SKSpriteNode!
-
+    let effectSound = SKAudioNode(fileNamed: "Space Jazz")
+    var score:  SKSpriteNode!
+    var moveUP: SKAction!
+    private var lastUpdateTime : TimeInterval = 0
+    private var lastSpeedUp : TimeInterval = 2
+    private var speedUpFrequency = initialSpeedUpFrequency
+    private var countdownTime : TimeInterval = 0
+    private var playTime : TimeInterval = 0
+    private var dados = Dados()
+    private var fontColor = UIColor.white
+    var entities = [GKEntity]()
+    var graphs = [String : GKGraph]()
+   
     
     @objc func createMeteoro(){
         let randomPos = Int.random(in: 0..<10)
@@ -37,14 +53,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.addChild(meteoro)
         
-        let moveUp = SKAction.move(to: CGPoint(x: x_values1[randomPos], y: -200), duration: 2)
+         moveUP = SKAction.move(to: CGPoint(x: x_values1[randomPos], y: -200), duration: 2)
         
-        meteoro.run(moveUp)
+        meteoro.run(moveUP)
         
 
         let remove = SKAction.wait(forDuration: 1)
         
-        let sequence = SKAction.sequence([moveUp,
+        let sequence = SKAction.sequence([moveUP,
             remove,
             .run {
                 meteoro.removeFromParent()
@@ -60,10 +76,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func sceneDidLoad() {
         super.sceneDidLoad()
-        
         self.physicsWorld.contactDelegate = self
         
-       
+//        dados.carregarDados()
     }
     
     
@@ -84,6 +99,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         
+        
         gameTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(createMeteoro), userInfo: nil, repeats: true)
         self.physicsWorld.contactDelegate = self
         
@@ -91,23 +107,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         ScrollLayer = self.childNode(withName: "ScrollLayer")
         createPlayer()
-    
+        addChild(effectSound)
 
         
     }
     
     
-    
+    //MARK: Faz a fisica do jogo
     func didBegin(_ contact: SKPhysicsContact){
        
-   
-        
-                let transition = SKTransition.crossFade(withDuration: 0.3)
+        let transition = SKTransition.crossFade(withDuration: 0.3)
         let newScene = GameOverScene.init(fileNamed: "GameOverScene")!
         newScene.scaleMode = SKSceneScaleMode.aspectFill
         view?.presentScene(newScene, transition: transition)
         
-//      
+
     }
     
     
@@ -116,13 +130,45 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Called before each frame is rendered
         scrollWorld()
         
-        
+        // Calculate time since last update
+        if self.lastUpdateTime == 0 {
+                   self.lastUpdateTime = currentTime + 2
+                   self.lastSpeedUp = lastUpdateTime
+                   self.countdownTime = currentTime
+               }
+               
+               // Calculate time since last update
+               let dt = currentTime - self.lastUpdateTime
+               
+               
+                   playTime = currentTime - countdownTime
+
+                   if let lblTime = childNode(withName: "Score") as? SKLabelNode {
+                       lblTime.text = String(format: "%.2f", playTime)
+                   }
+                   
+               
+               // Update entities
+               for entity in self.entities {
+                   entity.update(deltaTime: dt)
+               }
+               
+              
+               
+               self.lastUpdateTime = currentTime
+      
     }
+
     
     override  func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-      
-        
+        /* Avoid multi-touch gestures (optional) */
+               if touches.count > 1 {
+                   return;
+               }
+     
     }
+   
+        
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
        //MARK: Movimenta pela tela
         for touch  in touches {
@@ -165,4 +211,5 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
 
 }
+
 

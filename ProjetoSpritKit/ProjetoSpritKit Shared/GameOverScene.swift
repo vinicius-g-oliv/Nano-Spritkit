@@ -35,7 +35,7 @@ class GameOverScene: SKScene {
                 newScene.scaleMode = SKSceneScaleMode.aspectFill
                 view?.presentScene(newScene, transition: transition)
                
-            }else {
+            } else if  nodesArray.first?.name == "home" {
                 let newScene = MenuScene.init(fileNamed: "MenuScene")!
                 let transition = SKTransition.crossFade(withDuration: 0.5)
                 newScene.scaleMode = SKSceneScaleMode.aspectFill
