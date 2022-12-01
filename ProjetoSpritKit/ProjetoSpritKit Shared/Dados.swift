@@ -11,21 +11,18 @@ import Foundation
 
 class Dados {
     
-    public var Creditos: Int?
     public var Recorde: Double?
     
      
     public func carregarDados(){
-        let dadosCarregar : [String:String] = UserDefaults.standard.dictionary(forKey: "Dados") as! [String : String]
+        let dadosCarregar : Double = UserDefaults.standard.double(forKey: "Dados")
         
-        self.Creditos = Int(dadosCarregar["Creditos"]!)
-        self.Recorde  = Double(dadosCarregar["Recorde"]!)
+        self.Recorde  = dadosCarregar
        
     }
     
     public func salvarDados(){
-        let dadosSalvar : [String:String] = ["Creditos": String(self.Creditos!), "Recorde": String(self.Recorde!)]
-        
+        let dadosSalvar : Double = self.Recorde!
         UserDefaults.standard.set(dadosSalvar, forKey: "Dados")
     }
     

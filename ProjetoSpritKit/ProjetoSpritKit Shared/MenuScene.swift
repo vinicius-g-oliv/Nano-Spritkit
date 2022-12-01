@@ -8,11 +8,19 @@
 import Foundation
 import SpriteKit
 class MenuScene: SKScene {
-    
+    var dados = Dados()
     var playButtonNode: SKSpriteNode?
 
     let effectSound = SKAudioNode(fileNamed: "Space Jazz")
-    
+    override func sceneDidLoad() {
+        dados.carregarDados()
+        
+        if let ScoreNumber = childNode(withName: "ScoreNumber") as? SKLabelNode {
+            ScoreNumber.text = String(format: "%.2f", dados.Recorde!)
+        
+        }
+        
+    }
     class func startScene() -> MenuScene {
         // Load 'GameScene.sks' as an SKScene.
         guard let start = SKScene(fileNamed: "MenuScene") as? MenuScene else {

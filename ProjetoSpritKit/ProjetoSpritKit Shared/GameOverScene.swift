@@ -10,6 +10,14 @@ import SpriteKit
 
 
 class GameOverScene: SKScene {
+    private var dados = Dados()
+    private var player = GameScene()
+    override func sceneDidLoad() {
+       
+        
+        
+        
+    }
     class func startScene() -> MenuScene {
         // Load 'GameScene.sks' as an SKScene.
         guard let start = SKScene(fileNamed: "MenuScene") as? MenuScene else {
@@ -21,6 +29,13 @@ class GameOverScene: SKScene {
         start.scaleMode = SKSceneScaleMode.aspectFill
         
         return start
+    }
+    override func update(_ currentTime: TimeInterval) {
+        dados.carregarDados()
+        if let lblRecorde = childNode(withName: "lblRecorde") as? SKLabelNode {
+            lblRecorde.text = String(format: "%.2f", dados.Recorde!)
+        
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -7,15 +7,17 @@
 
 import SpriteKit
 import GameplayKit
-let kMinDistance = 25
-let kMinDuration = 0.1
-let kMinSpeed = 100
-let kMaxSpeed = 7000
-let initialSpeedUpFrequency : Double = 15
+/*
+//let kMinDistance = 25
+//let kMinDuration = 0.1
+//let kMinSpeed = 100
+//let kMaxSpeed = 7000
+//let initialSpeedUpFrequency : Double = 15
+ */
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     let fixedDelta: CFTimeInterval = 1.0 / 60.0 /* 60 FPS */
-    let scrollSpeed: CGFloat = 500
+    let scrollSpeed: CGFloat = 1000
     var ScrollLayer: SKNode!
     var player: SKSpriteNode!
     var gameTimer: Timer?
@@ -24,9 +26,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var moveUP: SKAction!
     private var lastUpdateTime : TimeInterval = 0
     private var lastSpeedUp : TimeInterval = 2
-    private var speedUpFrequency = initialSpeedUpFrequency
+    //private var speedUpFrequency = initialSpeedUpFrequency
     private var countdownTime : TimeInterval = 0
-    private var playTime : TimeInterval = 0
+    public var playTime : TimeInterval = 0
     private var dados = Dados()
     private var fontColor = UIColor.white
     var entities = [GKEntity]()
@@ -41,8 +43,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         let meteoro = SKSpriteNode(imageNamed: fotinhos[randomPos])
-        
-        
+
         meteoro.size = CGSize(width: 85, height: 85)
         meteoro.position = CGPoint(x: x_values[randomPos], y: 2000)
         meteoro.physicsBody = SKPhysicsBody(rectangleOf: meteoro.frame.size)
@@ -52,8 +53,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         meteoro.physicsBody!.usesPreciseCollisionDetection = true
         
         self.addChild(meteoro)
-        
-         moveUP = SKAction.move(to: CGPoint(x: x_values1[randomPos], y: -200), duration: 2)
+        // Duration determina a velocidade dos cometas
+        moveUP = SKAction.move(to: CGPoint(x: x_values1[randomPos], y: -200), duration: 2)
         
         meteoro.run(moveUP)
         
@@ -67,8 +68,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         ])
         meteoro.run(sequence)
-       
-    
+
         
     }
   
@@ -76,9 +76,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func sceneDidLoad() {
         super.sceneDidLoad()
+        dados.carregarDados()
         self.physicsWorld.contactDelegate = self
         
-//        dados.carregarDados()
+       
+      
     }
     
     
@@ -121,7 +123,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         newScene.scaleMode = SKSceneScaleMode.aspectFill
         view?.presentScene(newScene, transition: transition)
         
-
+        if let lblTime = childNode(withName: "Score") as? SKLabelNode {
+                    if playTime > dados.Recorde! {
+                        dados.Recorde = Double(lblTime.text!)
+                        dados.salvarDados()
+                    }
+                }
+      
+      
+              
     }
     
     
@@ -175,7 +185,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let location = touch.location(in: self)
             
             player.position.x = location.x
-            player.position.y = 200
+            player.position.y = 300
 
         }
     }
@@ -203,7 +213,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //MARK: Sprite player
         player = self.childNode(withName: "catNode") as? SKSpriteNode
         // Define a posição do ~Player~
-        player.position = CGPoint(x: 415, y: 200)
+        player.position = CGPoint(x: 415, y: 300)
         let body = SKPhysicsBody(rectangleOf: player.frame.size)
         player?.physicsBody = body
         body.contactTestBitMask = 1
