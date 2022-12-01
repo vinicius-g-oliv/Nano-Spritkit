@@ -29,13 +29,13 @@ class MenuScene: SKScene {
         }
         
         // Set the scale mode to scale to fit the window
-        start.scaleMode = SKSceneScaleMode.aspectFill
+        start.scaleMode = SKSceneScaleMode.aspectFit
         
         return start
     }
     override func didMove(to view: SKView) {
         
-        playButtonNode = (self.childNode(withName: "playV1") as? SKSpriteNode)
+        playButtonNode = (self.childNode(withName: "PlayV2") as? SKSpriteNode)
         //Adiciona musica ao jogo
         addChild(effectSound)
 //        var effectSound = SKAction.playSoundFileNamed("Space Jazz", waitForCompletion: false)
@@ -54,12 +54,12 @@ class MenuScene: SKScene {
            if let location = touch?.location(in:self) {
                let nodesArray = self.nodes(at: location)
                
-               if nodesArray.first?.name == "playV1" {
+               if nodesArray.first?.name == "PlayV2" {
                    let transition = SKTransition.crossFade(withDuration: 0.5)
                    let newScene = GameScene.init(fileNamed: "GameScene")!
 //                   var effectSound = SKAction.playSoundFileNamed("Space Jazz", waitForCompletion: false)
 //                   run(effectSound)
-                   newScene.scaleMode = SKSceneScaleMode.aspectFill
+                   newScene.scaleMode = SKSceneScaleMode.aspectFit
                    view?.presentScene(newScene, transition: transition)
                   
                }

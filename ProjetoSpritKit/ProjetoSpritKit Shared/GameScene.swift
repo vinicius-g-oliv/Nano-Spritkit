@@ -120,7 +120,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
        
         let transition = SKTransition.crossFade(withDuration: 0.3)
         let newScene = GameOverScene.init(fileNamed: "GameOverScene")!
-        newScene.scaleMode = SKSceneScaleMode.aspectFill
+        newScene.scaleMode = SKSceneScaleMode.aspectFit
         view?.presentScene(newScene, transition: transition)
         
         if let lblTime = childNode(withName: "Score") as? SKLabelNode {

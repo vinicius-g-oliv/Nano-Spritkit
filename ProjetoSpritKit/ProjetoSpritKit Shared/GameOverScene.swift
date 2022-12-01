@@ -26,7 +26,7 @@ class GameOverScene: SKScene {
         }
         
         // Set the scale mode to scale to fit the window
-        start.scaleMode = SKSceneScaleMode.aspectFill
+        start.scaleMode = SKSceneScaleMode.aspectFit
         
         return start
     }
@@ -47,13 +47,13 @@ class GameOverScene: SKScene {
             if nodesArray.first?.name == "playagain" {
                 let transition = SKTransition.crossFade(withDuration: 0.5)
                 let newScene = GameScene.init(fileNamed: "GameScene")!
-                newScene.scaleMode = SKSceneScaleMode.aspectFill
+                newScene.scaleMode = SKSceneScaleMode.aspectFit
                 view?.presentScene(newScene, transition: transition)
                
             } else if  nodesArray.first?.name == "home" {
                 let newScene = MenuScene.init(fileNamed: "MenuScene")!
                 let transition = SKTransition.crossFade(withDuration: 0.5)
-                newScene.scaleMode = SKSceneScaleMode.aspectFill
+                newScene.scaleMode = SKSceneScaleMode.aspectFit
                 view?.presentScene(newScene, transition: transition)
                 
             }
