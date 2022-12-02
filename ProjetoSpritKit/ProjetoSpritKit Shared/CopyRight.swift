@@ -1,15 +1,15 @@
 //
-//  GameOverScene.swift
+//  CopyRight.swift
 //  ProjetoSpritKit iOS
 //
-//  Created by Guilherme Lozano Borges on 24/11/22.
+//  Created by Victor Levenetz Mariano on 02/12/22.
 //
 
 import Foundation
 import SpriteKit
 
 
-class GameOverScene: SKScene {
+class CopyRight: SKScene{
     private var dados = Dados()
     //private var player = GameScene()
     override func sceneDidLoad() {
@@ -30,13 +30,7 @@ class GameOverScene: SKScene {
         
         return start
     }
-    override func update(_ currentTime: TimeInterval) {
-        dados.carregarDados()
-        if let lblRecorde = childNode(withName: "lblRecorde") as? SKLabelNode {
-            lblRecorde.text = String(format: "%.2f", dados.Recorde!)
-        
-        }
-    }
+    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first
@@ -44,20 +38,15 @@ class GameOverScene: SKScene {
         if let location = touch?.location(in:self) {
             let nodesArray = self.nodes(at: location)
             
-            if nodesArray.first?.name == "playagain" {
+            if nodesArray.first?.name == "voltar" {
                 let transition = SKTransition.crossFade(withDuration: 0.5)
-                let newScene = GameScene.init(fileNamed: "GameScene")!
+                let newScene = MenuScene.init(fileNamed: "MenuScene")!
                 newScene.scaleMode = SKSceneScaleMode.aspectFit
                 view?.presentScene(newScene, transition: transition)
                
-            } else if  nodesArray.first?.name == "home" {
-                let newScene = MenuScene.init(fileNamed: "MenuScene")!
-                let transition = SKTransition.crossFade(withDuration: 0.5)
-                newScene.scaleMode = SKSceneScaleMode.aspectFit
-                view?.presentScene(newScene, transition: transition)
-                
             }
             
         }
     }
+    
 }

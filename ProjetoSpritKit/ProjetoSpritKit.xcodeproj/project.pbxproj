@@ -11,6 +11,8 @@
 		05E47039292FD8B800EB4C5E /* PauseScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E47038292FD8B800EB4C5E /* PauseScene.swift */; };
 		05E4703B292FEBEE00EB4C5E /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E4703A292FEBEE00EB4C5E /* GameOverScene.swift */; };
 		05E4703D292FEC4E00EB4C5E /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 05E4703C292FEC4E00EB4C5E /* GameOverScene.sks */; };
+		0D424CD7293A822200138FEF /* CopyRight.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0D424CD6293A822200138FEF /* CopyRight.sks */; };
+		0D790F81293A841400D54A5F /* CopyRight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D790F80293A841400D54A5F /* CopyRight.swift */; };
 		552A2059292D90A5001C58D6 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552A2058292D90A5001C58D6 /* MenuScene.swift */; };
 		552A205B292D91AB001C58D6 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 552A205A292D91AB001C58D6 /* MenuScene.sks */; };
 		5588FA3729145889009776BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5588FA3629145889009776BE /* AppDelegate.swift */; };
@@ -31,6 +33,8 @@
 		05E47038292FD8B800EB4C5E /* PauseScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseScene.swift; sourceTree = "<group>"; };
 		05E4703A292FEBEE00EB4C5E /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		05E4703C292FEC4E00EB4C5E /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
+		0D424CD6293A822200138FEF /* CopyRight.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = CopyRight.sks; sourceTree = "<group>"; };
+		0D790F80293A841400D54A5F /* CopyRight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyRight.swift; sourceTree = "<group>"; };
 		552A2058292D90A5001C58D6 /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		552A205A292D91AB001C58D6 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
 		5588FA2B29145887009776BE /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -83,6 +87,8 @@
 				552A2058292D90A5001C58D6 /* MenuScene.swift */,
 				5588FA2B29145887009776BE /* Actions.sks */,
 				5588FA2E29145889009776BE /* Assets.xcassets */,
+				0D424CD6293A822200138FEF /* CopyRight.sks */,
+				0D790F80293A841400D54A5F /* CopyRight.swift */,
 			);
 			path = "ProjetoSpritKit Shared";
 			sourceTree = "<group>";
@@ -170,6 +176,7 @@
 				552A205B292D91AB001C58D6 /* MenuScene.sks in Resources */,
 				5588FA3C29145889009776BE /* Main.storyboard in Resources */,
 				5588FA4029145889009776BE /* Actions.sks in Resources */,
+				0D424CD7293A822200138FEF /* CopyRight.sks in Resources */,
 				5588FA3F29145889009776BE /* LaunchScreen.storyboard in Resources */,
 				5588FA4329145889009776BE /* Assets.xcassets in Resources */,
 				05E4703D292FEC4E00EB4C5E /* GameOverScene.sks in Resources */,
@@ -187,6 +194,7 @@
 				81C14C452937D00A00DEA254 /* Dados.swift in Sources */,
 				05E47039292FD8B800EB4C5E /* PauseScene.swift in Sources */,
 				5588FA4229145889009776BE /* GameScene.swift in Sources */,
+				0D790F81293A841400D54A5F /* CopyRight.swift in Sources */,
 				552A2059292D90A5001C58D6 /* MenuScene.swift in Sources */,
 				5588FA3929145889009776BE /* GameViewController.swift in Sources */,
 				05E4703B292FEBEE00EB4C5E /* GameOverScene.swift in Sources */,

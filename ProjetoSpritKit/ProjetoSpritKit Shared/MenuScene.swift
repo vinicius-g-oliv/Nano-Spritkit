@@ -10,6 +10,8 @@ import SpriteKit
 class MenuScene: SKScene {
     var dados = Dados()
     var playButtonNode: SKSpriteNode?
+    var coppyButton: SKSpriteNode?
+    
 
     let effectSound = SKAudioNode(fileNamed: "Space Jazz")
     override func sceneDidLoad() {
@@ -34,7 +36,7 @@ class MenuScene: SKScene {
         return start
     }
     override func didMove(to view: SKView) {
-        
+        coppyButton = (self.childNode(withName: "info") as? SKSpriteNode)
         playButtonNode = (self.childNode(withName: "PlayV2") as? SKSpriteNode)
         //Adiciona musica ao jogo
         addChild(effectSound)
@@ -57,6 +59,14 @@ class MenuScene: SKScene {
                if nodesArray.first?.name == "PlayV2" {
                    let transition = SKTransition.crossFade(withDuration: 0.5)
                    let newScene = GameScene.init(fileNamed: "GameScene")!
+//                   var effectSound = SKAction.playSoundFileNamed("Space Jazz", waitForCompletion: false)
+//                   run(effectSound)
+                   newScene.scaleMode = SKSceneScaleMode.aspectFit
+                   view?.presentScene(newScene, transition: transition)
+                  
+               } else if nodesArray.first?.name == "info" {
+                   let transition = SKTransition.crossFade(withDuration: 0.5)
+                   let newScene = CopyRight.init(fileNamed: "CopyRight")!
 //                   var effectSound = SKAction.playSoundFileNamed("Space Jazz", waitForCompletion: false)
 //                   run(effectSound)
                    newScene.scaleMode = SKSceneScaleMode.aspectFit
