@@ -20,6 +20,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let scrollSpeed: CGFloat = 1000
     var ScrollLayer: SKNode!
     var player: SKSpriteNode!
+    var star: SKSpriteNode!
+    var meteoro: SKSpriteNode!
     var gameTimer: Timer?
     let effectSound = SKAudioNode(fileNamed: "Space Jazz")
     var score:  SKSpriteNode!
@@ -33,7 +35,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var fontColor = UIColor.white
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
-   
+    var invencivel: Bool?
+    
+    
+    @objc func createStar(){
+        let star = SKSpriteNode(imageNamed: "EstrelaV2")
+        let randomPos = Int.random(in: 0..<10)
+        let x_values = [-50,0,175,275,325,475,625,825,875,1075]
+        let x_values1 = [100,200,300,400,500,600,700,800,850,1000]
+        star.name = "star"
+        star.size = CGSize(width: 85, height: 85)
+        star.position = CGPoint(x: x_values[randomPos], y: 2000)
+        star.physicsBody = SKPhysicsBody(rectangleOf: star.frame.size)
+        star.physicsBody!.isDynamic = true
+        star.physicsBody!.affectedByGravity = false
+        star.physicsBody!.categoryBitMask = 1
+        star.physicsBody!.usesPreciseCollisionDetection = true
+        
+        
+        moveUP = SKAction.move(to: CGPoint(x: x_values1[randomPos], y: -200), duration: 2)
+        
+       
+        star.run(moveUP)
+        self.addChild(star)
+
+        let remove = SKAction.wait(forDuration: 1)
+        
+        let sequence = SKAction.sequence([moveUP,
+            remove,
+            .run {
+                star.removeFromParent()
+            }
+        ])
+        star.run(sequence)
+
+    }
+    
     
     @objc func createMeteoro(){
         let randomPos = Int.random(in: 0..<10)
@@ -43,7 +80,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         let meteoro = SKSpriteNode(imageNamed: fotinhos[randomPos])
-
+        meteoro.name = "meteoro"
         meteoro.size = CGSize(width: 85, height: 85)
         meteoro.position = CGPoint(x: x_values[randomPos], y: 2000)
         meteoro.physicsBody = SKPhysicsBody(rectangleOf: meteoro.frame.size)
@@ -75,6 +112,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func sceneDidLoad() {
+      
+        
+        invencivel = true
         super.sceneDidLoad()
         dados.carregarDados()
         self.physicsWorld.contactDelegate = self
@@ -105,8 +145,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(createMeteoro), userInfo: nil, repeats: true)
         self.physicsWorld.contactDelegate = self
         
-        createMeteoro()
+        gameTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(createStar), userInfo: nil, repeats: true)
+        self.physicsWorld.contactDelegate = self
         
+        createMeteoro()
+        createStar()
         ScrollLayer = self.childNode(withName: "ScrollLayer")
         createPlayer()
         addChild(effectSound)
@@ -117,22 +160,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //MARK: Faz a fisica do jogo
     func didBegin(_ contact: SKPhysicsContact){
-       
-        let transition = SKTransition.crossFade(withDuration: 0.3)
-        let newScene = GameOverScene.init(fileNamed: "GameOverScene")!
-        newScene.scaleMode = SKSceneScaleMode.aspectFit
-        view?.presentScene(newScene, transition: transition)
+        if(contact.bodyA.node?.name == "player" &&
+           contact.bodyB.node?.name == "star") {
+            invencivel = true
+            
+            
+        }
         
-        if let lblTime = childNode(withName: "Score") as? SKLabelNode {
+        else{
+            if (invencivel == true) {
+                    invencivel = false }
+            else{
+                
+                let transition = SKTransition.crossFade(withDuration: 0.3)
+                let newScene = GameOverScene.init(fileNamed: "GameOverScene")!
+                newScene.scaleMode = SKSceneScaleMode.aspectFit
+                view?.presentScene(newScene, transition: transition)
+                
+                if let lblTime = childNode(withName: "Score") as? SKLabelNode {
                     if playTime > dados.Recorde! {
                         dados.Recorde = Double(lblTime.text!)
                         dados.salvarDados()
                     }
                 }
-      
-      
-              
+            }
+        }
+        
+        
     }
+    
     
     
     
@@ -211,12 +267,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     func createPlayer() {
         //MARK: Sprite player
+        
         player = self.childNode(withName: "catNode") as? SKSpriteNode
         // Define a posição do ~Player~
         player.position = CGPoint(x: 415, y: 300)
         let body = SKPhysicsBody(rectangleOf: player.frame.size)
         player?.physicsBody = body
+        player.name = "player"
         body.contactTestBitMask = 1
+        
         
     }
 
