@@ -47,7 +47,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         star.size = CGSize(width: 85, height: 85)
         star.position = CGPoint(x: x_values[randomPos], y: 2000)
         star.physicsBody = SKPhysicsBody(rectangleOf: star.frame.size)
-        star.physicsBody!.isDynamic = true
+        star.physicsBody!.isDynamic = false
         star.physicsBody!.affectedByGravity = false
         star.physicsBody!.categoryBitMask = 1
         star.physicsBody!.usesPreciseCollisionDetection = true
@@ -59,16 +59,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         star.run(moveUP)
         self.addChild(star)
 
-        let remove = SKAction.wait(forDuration: 1)
+        let remove = SKAction.wait(forDuration: 0.1)
         
-        let sequence = SKAction.sequence([moveUP,
-            remove,
-            .run {
-                star.removeFromParent()
+        let sequence = SKAction.sequence([moveUP,remove,.run {
+            star.removeFromParent()
+            star.removeAllChildren()
             }
         ])
         star.run(sequence)
-
+        
     }
     
     
@@ -163,15 +162,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if(contact.bodyA.node?.name == "player" &&
            contact.bodyB.node?.name == "star") {
             invencivel = true
+            contact.bodyB.node?.removeFromParent()
+            player.physicsBody?.contactTestBitMask = 0
             
             
+
         }
         
         else{
-            if (invencivel == true) {
-                    invencivel = false }
-            else{
-                
                 let transition = SKTransition.crossFade(withDuration: 0.3)
                 let newScene = GameOverScene.init(fileNamed: "GameOverScene")!
                 newScene.scaleMode = SKSceneScaleMode.aspectFit
@@ -184,7 +182,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     }
                 }
             }
-        }
+        
         
         
     }
