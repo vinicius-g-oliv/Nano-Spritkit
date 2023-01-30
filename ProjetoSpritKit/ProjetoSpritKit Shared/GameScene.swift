@@ -8,14 +8,16 @@
 import SpriteKit
 import GameplayKit
 /*
-//let kMinDistance = 25
-//let kMinDuration = 0.1
-//let kMinSpeed = 100
-//let kMaxSpeed = 7000
-//let initialSpeedUpFrequency : Double = 15
+ //let kMinDistance = 25
+ //let kMinDuration = 0.1
+ //let kMinSpeed = 100
+ //let kMaxSpeed = 7000
+ //let initialSpeedUpFrequency : Double = 15
  */
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    
+    
     let fixedDelta: CFTimeInterval = 1.0 / 60.0 /* 60 FPS */
     let scrollSpeed: CGFloat = 1000
     var ScrollLayer: SKNode!
@@ -55,17 +57,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         moveUP = SKAction.move(to: CGPoint(x: x_values1[randomPos], y: -200), duration: 2)
         
-       
+        
         star.run(moveUP)
         self.addChild(star)
-
+        
         let remove = SKAction.wait(forDuration: 0.1)
         
         let sequence = SKAction.sequence([moveUP,remove,.run {
             star.removeFromParent()
             star.removeAllChildren()
-            }
-        ])
+        }
+                                         ])
         star.run(sequence)
         
     }
@@ -94,32 +96,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         meteoro.run(moveUP)
         
-
+        
         let remove = SKAction.wait(forDuration: 1)
         
         let sequence = SKAction.sequence([moveUP,
-            remove,
-            .run {
-                meteoro.removeFromParent()
-            }
-        ])
+                                          remove,
+                                          .run {
+                                              meteoro.removeFromParent()
+                                          }
+                                         ])
         meteoro.run(sequence)
-
+        
         
     }
-  
+    
     
     
     override func sceneDidLoad() {
-      
+        
         
         invencivel = true
         super.sceneDidLoad()
         dados.carregarDados()
         self.physicsWorld.contactDelegate = self
         
-       
-      
+        
+        
     }
     
     
@@ -133,7 +135,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Set the scale mode to scale to fit the window
         scene.scaleMode = .aspectFit
-      
+        
         return scene
     }
     
@@ -152,7 +154,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ScrollLayer = self.childNode(withName: "ScrollLayer")
         createPlayer()
         addChild(effectSound)
-
+        
         
     }
     
@@ -161,86 +163,97 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact){
         if(contact.bodyA.node?.name == "player" &&
            contact.bodyB.node?.name == "star") {
-            invencivel = true
+            
             contact.bodyB.node?.removeFromParent()
-            player.physicsBody?.contactTestBitMask = 0
+            //            player.physicsBody?.contactTestBitMask = 0
+            //            invencivel = true
             
             
-
-        }
-        
-        else{
-                let transition = SKTransition.crossFade(withDuration: 0.3)
-                let newScene = GameOverScene.init(fileNamed: "GameOverScene")!
-                newScene.scaleMode = SKSceneScaleMode.aspectFit
-                view?.presentScene(newScene, transition: transition)
-                
-                if let lblTime = childNode(withName: "Score") as? SKLabelNode {
-                    if playTime > dados.Recorde! {
-                        dados.Recorde = Double(lblTime.text!)
-                        dados.salvarDados()
-                    }
+            moveUP = SKAction.run {
+                self.player.physicsBody?.contactTestBitMask = 4
+                self.invencivel = true
+                self.player.texture = SKTexture(imageNamed: "CatAnime")
+            }
+            
+            
+            
+            let remove = SKAction.wait(forDuration: 5)
+            
+            let sequence = SKAction.sequence([moveUP,
+                                              remove,
+                                              .run {
+                                                  self.player.physicsBody?.contactTestBitMask = 1
+                                                  self.invencivel = false
+                                                  self.player.texture = SKTexture(imageNamed: "GatoV2")
+                                              }
+                                             ])
+            run(sequence)
+            
+            
+        }else{
+            let transition = SKTransition.crossFade(withDuration: 0.3)
+            let newScene = GameOverScene.init(fileNamed: "GameOverScene")!
+            newScene.scaleMode = SKSceneScaleMode.aspectFit
+            view?.presentScene(newScene, transition: transition)
+            
+            if let lblTime = childNode(withName: "Score") as? SKLabelNode {
+                if playTime > dados.Recorde! {
+                    dados.Recorde = Double(lblTime.text!)
+                    dados.salvarDados()
                 }
             }
-        
-        
-        
+        }
     }
-    
-    
-    
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         scrollWorld()
-        
         // Calculate time since last update
         if self.lastUpdateTime == 0 {
-                   self.lastUpdateTime = currentTime + 2
-                   self.lastSpeedUp = lastUpdateTime
-                   self.countdownTime = currentTime
-               }
-               
-               // Calculate time since last update
-               let dt = currentTime - self.lastUpdateTime
-               
-               
-                   playTime = currentTime - countdownTime
-
-                   if let lblTime = childNode(withName: "Score") as? SKLabelNode {
-                       lblTime.text = String(format: "%.2f", playTime)
-                   }
-                   
-               
-               // Update entities
-               for entity in self.entities {
-                   entity.update(deltaTime: dt)
-               }
-               
-              
-               
-               self.lastUpdateTime = currentTime
-      
+            self.lastUpdateTime = currentTime + 10
+            self.lastSpeedUp = lastUpdateTime
+            self.countdownTime = currentTime
+        }
+        
+        // Calculate time since last update
+        let dt = currentTime - self.lastUpdateTime
+        
+        
+        playTime = currentTime - countdownTime
+        
+        if let lblTime = childNode(withName: "Score") as? SKLabelNode {
+            lblTime.text = String(format: "%.2f", playTime )
+        }
+        
+        
+        // Update entities
+        for entity in self.entities {
+            entity.update(deltaTime: dt)
+        }
+        
+        
+        self.lastUpdateTime = currentTime
+        
     }
-
+    
     
     override  func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         /* Avoid multi-touch gestures (optional) */
-               if touches.count > 1 {
-                   return;
-               }
-     
-    }
-   
+        if touches.count > 1 {
+            return;
+        }
         
+    }
+    
+    
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-       //MARK: Movimenta pela tela
+        //MARK: Movimenta pela tela
         for touch  in touches {
             let location = touch.location(in: self)
             
             player.position.x = location.x
             player.position.y = 300
-
+            
         }
     }
     
@@ -267,6 +280,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //MARK: Sprite player
         
         player = self.childNode(withName: "catNode") as? SKSpriteNode
+        //          player.texture = SKTexture(imageNamed: "GatoV2")
         // Define a posição do ~Player~
         player.position = CGPoint(x: 415, y: 300)
         let body = SKPhysicsBody(rectangleOf: player.frame.size)
@@ -276,7 +290,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
     }
-
 }
 
 
