@@ -17,7 +17,6 @@ import GameplayKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    
     let fixedDelta: CFTimeInterval = 1.0 / 60.0 /* 60 FPS */
     let scrollSpeed: CGFloat = 1000
     var ScrollLayer: SKNode!
@@ -82,7 +81,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let meteoro = SKSpriteNode(imageNamed: fotinhos[randomPos])
         meteoro.name = "meteoro"
-        meteoro.size = CGSize(width: 85, height: 85)
+        meteoro.size = CGSize(width: 100, height: 100)
         meteoro.position = CGPoint(x: x_values[randomPos], y: 2000)
         meteoro.physicsBody = SKPhysicsBody(rectangleOf: meteoro.frame.size)
         meteoro.physicsBody!.isDynamic = true
@@ -146,7 +145,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameTimer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(createMeteoro), userInfo: nil, repeats: true)
         self.physicsWorld.contactDelegate = self
         
-        gameTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(createStar), userInfo: nil, repeats: true)
+        gameTimer = Timer.scheduledTimer(timeInterval: 12.2, target: self, selector: #selector(createStar), userInfo: nil, repeats: true)
         self.physicsWorld.contactDelegate = self
         
         createMeteoro()
@@ -174,7 +173,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.player.name = "player"
                 body.collisionBitMask = 0
                 self.invencivel = true
-                self.player.texture = SKTexture(imageNamed: "GatoV2")
+                self.player.texture = SKTexture(imageNamed: "felicettestar1")
                
                 
             }
@@ -191,7 +190,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                                                   self.player.name = "player"
                                                   body.contactTestBitMask = 1
                                                   self.invencivel = false
-                                                  self.player.texture = SKTexture(imageNamed: "GatoV3")
+                                                  self.player.texture = SKTexture(imageNamed: "Felicette1")
                                                   self.player.physicsBody?.affectedByGravity = false
                                               }
                                              ])
@@ -258,7 +257,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //MARK: Movimenta pela tela
         for touch  in touches {
             let location = touch.location(in: self)
-            
             player.position.x = location.x
             player.position.y = 300
             
@@ -286,10 +284,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     func createPlayer() {
         //MARK: Sprite player
-        
         player = self.childNode(withName: "catNode") as? SKSpriteNode
-        // Define a posição do ~Player~
         player.position = CGPoint(x: 415, y: 300)
+        player.size = CGSize(width: 130, height: 230)
         let body = SKPhysicsBody(rectangleOf: player.frame.size)
         player?.physicsBody = body
         player.name = "player"
