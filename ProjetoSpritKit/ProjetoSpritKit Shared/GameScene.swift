@@ -77,7 +77,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let randomPos = Int.random(in: 0..<10)
         let x_values = [-100,0,150,250,300,450,600,800,850,1000]
         let x_values1 = [100,200,300,400,500,600,700,800,850,1000]
-        let fotinhos = ["MeteoroV1_1", "MeteoroV1_2", "MeteoroV1_3", "MeteoroV1_4", "MeteoroV1_5", "MeteoroV1_6", "MeteoroV1_7", "MeteoroV1_8","MeteoroV1_7", "MeteoroV1_8"]
+        let fotinhos = ["MeteoroV1_1", "MeteoroV1_2", "MeteoroV1_3", "MeteoroV1_4", "MeteoroV1_5","MeteoroFogo1","MeteoroFogo_2","MeteoroFogo_3","MeteoroFogo_4","MeteoroFogo_5"]
         
         
         let meteoro = SKSpriteNode(imageNamed: fotinhos[randomPos])
@@ -168,11 +168,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             //            player.physicsBody?.contactTestBitMask = 0
             //            invencivel = true
             
-            
             moveUP = SKAction.run {
-                self.player.physicsBody?.contactTestBitMask = 4
+                let body = SKPhysicsBody(rectangleOf: self.player.frame.size)
+                self.player?.physicsBody = body
+                self.player.name = "player"
+                body.collisionBitMask = 0
                 self.invencivel = true
-                self.player.texture = SKTexture(imageNamed: "CatAnime")
+                self.player.texture = SKTexture(imageNamed: "GatoV2")
+               
+                
             }
             
             
@@ -182,9 +186,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let sequence = SKAction.sequence([moveUP,
                                               remove,
                                               .run {
-                                                  self.player.physicsBody?.contactTestBitMask = 1
+                                                  let body = SKPhysicsBody(rectangleOf: self.player.frame.size)
+                                                  self.player?.physicsBody = body
+                                                  self.player.name = "player"
+                                                  body.contactTestBitMask = 1
                                                   self.invencivel = false
-                                                  self.player.texture = SKTexture(imageNamed: "GatoV2")
+                                                  self.player.texture = SKTexture(imageNamed: "GatoV3")
+                                                  self.player.physicsBody?.affectedByGravity = false
                                               }
                                              ])
             run(sequence)
@@ -280,7 +288,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //MARK: Sprite player
         
         player = self.childNode(withName: "catNode") as? SKSpriteNode
-        //          player.texture = SKTexture(imageNamed: "GatoV2")
         // Define a posição do ~Player~
         player.position = CGPoint(x: 415, y: 300)
         let body = SKPhysicsBody(rectangleOf: player.frame.size)
